@@ -1,0 +1,51 @@
+import Link from "next/link";
+
+export default function LinuxDownloadPage() {
+  return (
+    <div className="min-h-dvh bg-[#05060a] text-white">
+      <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6">
+        <Link href="/" className="text-sm text-white/70 hover:text-white">
+          ← Back to home
+        </Link>
+
+        <h1 className="mt-6 text-balance text-3xl font-semibold tracking-tight sm:text-4xl">
+          Download for Linux
+        </h1>
+        <p className="mt-3 text-pretty text-base leading-7 text-white/70">
+          Add your release files, then wire these buttons to the real download
+          URLs (GitHub Releases or files under <span className="font-mono text-white/80">public/downloads</span>).
+        </p>
+
+        <div className="mt-8 grid gap-3 sm:grid-cols-3">
+          <a
+            href="/"
+
+            className="rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4 hover:bg-white/[0.06]"
+          >
+            <p className="text-sm font-semibold">AppImage</p>
+            <p className="mt-1 text-xs text-white/60">Recommended</p>
+          </a>
+          <a
+            href="/"
+
+            className="rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4 hover:bg-white/[0.06]"
+          >
+            <p className="text-sm font-semibold">.deb</p>
+            <p className="mt-1 text-xs text-white/60">Debian / Ubuntu</p>
+          </a>
+          <a
+            href="/"
+
+            className="rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4 hover:bg-white/[0.06]"
+          >
+            <p className="text-sm font-semibold">.rpm</p>
+            <p className="mt-1 text-xs text-white/60">Fedora / openSUSE</p>
+          </a>
+        </div>
+
+
+      </div>
+    </div>
+  );
+}
+
