@@ -11,10 +11,7 @@ export default function LinuxDownloadPage() {
         <h1 className="mt-6 text-balance text-3xl font-semibold tracking-tight sm:text-4xl">
           Download for Linux
         </h1>
-        <p className="mt-3 text-pretty text-base leading-7 text-white/70">
-          Add your release files, then wire these buttons to the real download
-          URLs (GitHub Releases or files under <span className="font-mono text-white/80">public/downloads</span>).
-        </p>
+
 
         <div className="mt-8 grid gap-3 sm:grid-cols-3">
           <a
