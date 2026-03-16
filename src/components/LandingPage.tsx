@@ -215,9 +215,16 @@ export function LandingPage() {
         <div className="flex items-center justify-between py-6">
           <Link href="/" className="flex items-center gap-2">
 
-            <span className="pl-8 text-sm font-semibold tracking-tight">
+            <Image
+              src="/logo.png"
+              alt="icon"
+              className="absolute mt-8"
+              width={250}
+              height={250}
+            />
+            {/* <span className=" text-sm font-semibold tracking-tight">
               Khushi API Client
-            </span>
+            </span> */}
           </Link>
 
           <nav className="hidden items-center gap-6 text-sm text-white/70 md:flex">
