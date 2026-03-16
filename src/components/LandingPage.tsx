@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import type { Variants } from "framer-motion";
+import Image from "next/image";
 
 type DownloadPlatform = "linux" | "windows" | "mac";
 
@@ -213,10 +214,8 @@ export function LandingPage() {
       <header className="relative mx-auto max-w-6xl px-4 sm:px-6">
         <div className="flex items-center justify-between py-6">
           <Link href="/" className="flex items-center gap-2">
-            <span className="inline-flex size-9 items-center justify-center rounded-xl border border-white/10 bg-white/5 font-semibold">
-              K
-            </span>
-            <span className="text-sm font-semibold tracking-tight">
+
+            <span className="pl-8 text-sm font-semibold tracking-tight">
               Khushi API Client
             </span>
           </Link>
@@ -326,60 +325,15 @@ export function LandingPage() {
               <motion.div
                 whileHover={{ rotate: 0.25, y: -2 }}
                 transition={{ type: "spring", stiffness: 220, damping: 22 }}
-                className="relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-b from-white/10 to-white/[0.03] p-5"
+                className="relative h-64 w-full overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-b from-white/10 to-white/[0.03] p-5"
               >
-                <div className="flex items-center justify-between">
-                  <div className="flex gap-2">
-                    <span className="size-3 rounded-full bg-rose-400/80" />
-                    <span className="size-3 rounded-full bg-amber-300/80" />
-                    <span className="size-3 rounded-full bg-emerald-300/80" />
-                  </div>
-                  <span className="text-xs text-white/60">Request preview</span>
-                </div>
-
-                <div className="mt-5 grid gap-3">
-                  <div className="rounded-xl border border-white/10 bg-black/30 p-4">
-                    <div className="flex items-center justify-between gap-3">
-                      <span className="text-xs font-medium text-white/70">
-                        GET
-                      </span>
-                      <span className="truncate text-xs text-white/60">
-                        https://api.example.com/v1/users?limit=25
-                      </span>
-                      <span className="text-xs font-medium text-emerald-300">
-                        200 OK
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-2 gap-3">
-                    <div className="rounded-xl border border-white/10 bg-black/25 p-4">
-                      <p className="text-xs font-medium text-white/70">
-                        Env vars
-                      </p>
-                      <p className="mt-2 text-xs text-white/60">
-                        {"{{baseUrl}}"} · {"{{token}}"}
-                      </p>
-                    </div>
-                    <div className="rounded-xl border border-white/10 bg-black/25 p-4">
-                      <p className="text-xs font-medium text-white/70">
-                        Response
-                      </p>
-                      <p className="mt-2 text-xs text-white/60">
-                        JSON · headers · timing
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="rounded-xl border border-white/10 bg-black/25 p-4">
-                    <p className="text-xs font-medium text-white/70">
-                      Collections
-                    </p>
-                    <p className="mt-2 text-xs text-white/60">
-                      Keep requests organized by project.
-                    </p>
-                  </div>
-                </div>
+                <Image
+                  src="/sample.png"
+                  alt="spamle"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-contain"
+                />
               </motion.div>
 
               <div className="pointer-events-none absolute -inset-4 -z-10 rounded-3xl bg-gradient-to-r from-indigo-500/10 via-cyan-400/10 to-fuchsia-500/10 blur-2xl" />
