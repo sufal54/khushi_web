@@ -241,7 +241,6 @@ export function LandingPage() {
               href="https://github.com/sufal54/khushi"
               className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-white hover:bg-white/10"
               aria-disabled
-              onClick={(e) => e.preventDefault()}
             >
               GitHub
             </a>
