@@ -428,7 +428,7 @@ export function LandingPage() {
                   platform="linux"
                   primary
                   title="Linux"
-                  description="Download instructions page. You can link AppImage, .deb, or .rpm when your releases are ready."
+                  description="You can download .dev or .rpm"
                   href="/download/linux"
                   cta="Download for Linux"
                   meta="Available now"
@@ -458,9 +458,7 @@ export function LandingPage() {
               </motion.div>
             </div>
 
-            <motion.p variants={item} className="mt-6 text-center text-xs text-white/60">
-              Tip: when you’re ready, place your files under <span className="font-mono text-white/75">public/downloads</span> or link to GitHub Releases.
-            </motion.p>
+
           </motion.div>
         </section>
 
@@ -475,7 +473,7 @@ export function LandingPage() {
               <SectionTitle
                 eyebrow="FAQ"
                 title="Common questions"
-                subtitle="You can edit these answers anytime to match your exact features and release process."
+                subtitle="Top asked Questions"
               />
             </motion.div>
 
@@ -515,7 +513,7 @@ export function LandingPage() {
             <div>
               <p className="text-sm font-semibold">Khushi API Client</p>
               <p className="mt-1 text-xs text-white/60">
-                © {year} · Built with Next.js + Rust
+                © {year} · Built with <span className="text-red-600 text-2xl">{"\u2665"}</span>
               </p>
             </div>
             <div className="flex flex-wrap gap-3 text-xs text-white/60">
