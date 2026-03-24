@@ -6,7 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import type { Variants } from "framer-motion";
 import Image from "next/image";
 
-type DownloadPlatform = "linux" | "windows" | "mac";
+type DownloadPlatform = "linux" | "windows" | "mac" | "android";
 
 const container: Variants = {
   hidden: {},
@@ -63,7 +63,6 @@ function SectionTitle({
     </div>
   );
 }
-
 function PlatformIcon({ platform }: { platform: DownloadPlatform }) {
   if (platform === "linux") {
     return (
@@ -79,9 +78,17 @@ function PlatformIcon({ platform }: { platform: DownloadPlatform }) {
       </span>
     );
   }
+  if (platform === "mac") {
+    return (
+      <span aria-hidden className="text-lg">
+        ⌘
+      </span>
+    );
+  }
+  // Android
   return (
     <span aria-hidden className="text-lg">
-      ⌘
+      🤖
     </span>
   );
 }
@@ -433,6 +440,20 @@ export function LandingPage() {
                   meta="Available now"
                 />
               </motion.div>
+
+              <motion.div variants={item}>
+                <DownloadCard
+                  platform="android"
+                  primary
+                  title="Android"
+                  description="Download the APK to install manually"
+                  href="/download/android"
+                  cta="Download for Linux"
+                  meta="Available now"
+
+                />
+              </motion.div>
+
               <motion.div variants={item}>
                 <DownloadCard
                   platform="windows"
@@ -455,6 +476,8 @@ export function LandingPage() {
                   disabled
                 />
               </motion.div>
+
+
             </div>
 
 

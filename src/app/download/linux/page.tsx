@@ -15,7 +15,7 @@ export default function LinuxDownloadPage() {
 
         <div className="mt-8 grid gap-3 sm:grid-cols-3">
           <a
-            href="#"
+            href="https://drive.google.com/file/d/1fAFsFM2ehcj6HKEZT6wvjSj7O9497oJ3/view?usp=drive_link"
 
             className="rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4 hover:bg-white/[0.06]"
           >
