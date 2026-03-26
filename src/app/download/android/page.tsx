@@ -1,3 +1,4 @@
+import { androidLink } from "@/utill/downloadLink";
 import Link from "next/link";
 
 export default function AndroidDownloadPage() {
@@ -18,7 +19,7 @@ export default function AndroidDownloadPage() {
 
                 <div className="mt-8 grid gap-3 sm:grid-cols-1 md:grid-cols-2">
                     <a
-                        href="https://drive.google.com/file/d/1qWxuTmAZ4DI2ZY_t79JN7eRNwWUOCV-r/view?usp=drive_link"
+                        href={androidLink.manual}
                         className="rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4 hover:bg-white/[0.06] flex flex-col items-start gap-1"
                     >
                         <p className="text-sm font-semibold">APK</p>

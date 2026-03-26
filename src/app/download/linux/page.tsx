@@ -1,3 +1,4 @@
+import { linuxLink } from "@/utill/downloadLink";
 import Link from "next/link";
 
 export default function LinuxDownloadPage() {
@@ -15,7 +16,7 @@ export default function LinuxDownloadPage() {
 
         <div className="mt-8 grid gap-3 sm:grid-cols-3">
           <a
-            href="https://drive.google.com/file/d/1fAFsFM2ehcj6HKEZT6wvjSj7O9497oJ3/view?usp=drive_link"
+            href={linuxLink.appImage}
 
             className="rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4 hover:bg-white/[0.06]"
           >
@@ -23,7 +24,7 @@ export default function LinuxDownloadPage() {
             <p className="mt-1 text-xs text-white/60">Recommended</p>
           </a>
           <a
-            href="https://res.cloudinary.com/dqmui1vt3/raw/upload/v1773671123/tzxwk7raw2lda5sk2tju.deb"
+            href={linuxLink.deb}
 
             className="rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4 hover:bg-white/[0.06]"
           >
@@ -31,7 +32,7 @@ export default function LinuxDownloadPage() {
             <p className="mt-1 text-xs text-white/60">Debian / Ubuntu</p>
           </a>
           <a
-            href="https://res.cloudinary.com/dqmui1vt3/raw/upload/v1773671137/jzmhs5tforlttju6p64k.rpm"
+            href={linuxLink.rpm}
 
             className="rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4 hover:bg-white/[0.06]"
           >
