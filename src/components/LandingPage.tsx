@@ -1,22 +1,30 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import type { Variants } from "framer-motion";
 import Image from "next/image";
+import { downloadInfo, getDownloadPlatform } from "@/utill/deviceInfo";
 
-type DownloadPlatform = "linux" | "windows" | "mac" | "android";
+export type DownloadPlatform = "linux" | "windows" | "mac" | "android";
 
 const container: Variants = {
   hidden: {},
   show: {
-    transition: { staggerChildren: 0.08, delayChildren: 0.05 },
+    transition: {
+      staggerChildren: 0.08,
+      delayChildren: 0.05,
+    },
   },
 };
 
 const item: Variants = {
-  hidden: { opacity: 0, y: 14, filter: "blur(6px)" },
+  hidden: {
+    opacity: 0,
+    y: 14,
+    filter: "blur(6px)",
+  },
   show: {
     opacity: 1,
     y: 0,
@@ -54,15 +62,18 @@ function SectionTitle({
       <p className="text-sm font-medium tracking-wide text-white/70">
         {eyebrow}
       </p>
+
       <h2 className="mt-3 text-balance text-3xl font-semibold tracking-tight text-white sm:text-4xl">
         {title}
       </h2>
+
       <p className="mt-3 text-pretty text-base leading-7 text-white/70">
         {subtitle}
       </p>
     </div>
   );
 }
+
 function PlatformIcon({ platform }: { platform: DownloadPlatform }) {
   if (platform === "linux") {
     return (
@@ -71,6 +82,7 @@ function PlatformIcon({ platform }: { platform: DownloadPlatform }) {
       </span>
     );
   }
+
   if (platform === "windows") {
     return (
       <span aria-hidden className="text-lg">
@@ -78,6 +90,7 @@ function PlatformIcon({ platform }: { platform: DownloadPlatform }) {
       </span>
     );
   }
+
   if (platform === "mac") {
     return (
       <span aria-hidden className="text-lg">
@@ -85,7 +98,7 @@ function PlatformIcon({ platform }: { platform: DownloadPlatform }) {
       </span>
     );
   }
-  // Android
+
   return (
     <span aria-hidden className="text-lg">
       🤖
@@ -126,8 +139,12 @@ function DownloadCard({
         <span className="inline-flex size-11 items-center justify-center rounded-xl border border-white/10 bg-white/5">
           <PlatformIcon platform={platform} />
         </span>
+
         <div className="min-w-0">
-          <h3 className="truncate text-base font-semibold text-white">{title}</h3>
+          <h3 className="truncate text-base font-semibold text-white">
+            {title}
+          </h3>
+
           <p className="text-xs text-white/60">{meta}</p>
         </div>
       </div>
@@ -152,7 +169,9 @@ function DownloadCard({
     </div>
   );
 
-  if (disabled) return content;
+  if (disabled) {
+    return content;
+  }
 
   return (
     <Link href={href} className="block h-full">
@@ -161,47 +180,58 @@ function DownloadCard({
   );
 }
 
-function FAQItem({
-  question,
-  answer,
-}: {
-  question: string;
-  answer: string;
-}) {
+function FAQItem({ question, answer }: { question: string; answer: string }) {
   const [open, setOpen] = useState(false);
 
   return (
     <div className="rounded-2xl border border-white/10 bg-white/[0.03]">
       <button
         type="button"
-        onClick={() => setOpen((v) => !v)}
+        onClick={() => setOpen((value) => !value)}
         className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left"
         aria-expanded={open}
       >
         <span className="text-sm font-medium text-white">{question}</span>
+
         <motion.span
           aria-hidden
           animate={{ rotate: open ? 45 : 0 }}
-          transition={{ duration: 0.18, ease: "easeOut" }}
+          transition={{
+            duration: 0.18,
+            ease: "easeOut",
+          }}
           className="inline-flex size-8 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-white/80"
         >
           +
         </motion.span>
       </button>
+
       <AnimatePresence initial={false}>
-        {open ? (
+        {open && (
           <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.22, ease: "easeOut" }}
+            initial={{
+              height: 0,
+              opacity: 0,
+            }}
+            animate={{
+              height: "auto",
+              opacity: 1,
+            }}
+            exit={{
+              height: 0,
+              opacity: 0,
+            }}
+            transition={{
+              duration: 0.22,
+              ease: "easeOut",
+            }}
             className="overflow-hidden"
           >
             <div className="px-5 pb-5 text-sm leading-6 text-white/70">
               {answer}
             </div>
           </motion.div>
-        ) : null}
+        )}
       </AnimatePresence>
     </div>
   );
@@ -209,45 +239,59 @@ function FAQItem({
 
 export function LandingPage() {
   const year = useMemo(() => new Date().getFullYear(), []);
+  const [downloadPlatform, setDownloadPlatform] =
+    useState<DownloadPlatform>("linux");
+
+  useEffect(() => {
+    const platform = getDownloadPlatform();
+    console.log(platform);
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setDownloadPlatform(platform);
+  }, []);
 
   return (
     <div className="min-h-dvh bg-[#05060a] text-white">
+      {/* Background */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute -top-40 left-1/2 h-[560px] w-[860px] -translate-x-1/2 rounded-full bg-gradient-to-r from-indigo-500/25 via-cyan-400/15 to-fuchsia-500/25 blur-3xl" />
+
         <div className="absolute bottom-[-240px] left-[-240px] h-[520px] w-[520px] rounded-full bg-cyan-400/10 blur-3xl" />
+
         <div className="absolute bottom-[-280px] right-[-240px] h-[560px] w-[560px] rounded-full bg-indigo-500/10 blur-3xl" />
       </div>
 
+      {/* Header */}
       <header className="relative mx-auto max-w-6xl px-4 sm:px-6">
         <div className="flex items-center justify-between py-6">
-          <Link href="/" className="flex items-center gap-2">
-
+          <Link href="/" className="relative flex h-12 w-32 items-center">
             <Image
               src="/logo.png"
-              alt="icon"
-              className="absolute mt-8"
-              width={250}
-              height={250}
+              alt="Khushi API Client"
+              width={140}
+              height={140}
+              priority
+              className="absolute left-0 top-1/2 size-28 -translate-y-1/2 object-contain"
             />
-            {/* <span className=" text-sm font-semibold tracking-tight">
-              Khushi API Client
-            </span> */}
           </Link>
 
           <nav className="hidden items-center gap-6 text-sm text-white/70 md:flex">
-            <a href="#features" className="hover:text-white">
+            <a href="#features" className="transition hover:text-white">
               Features
             </a>
-            <a href="#download" className="hover:text-white">
+
+            <a href="#download" className="transition hover:text-white">
               Download
             </a>
-            <a href="#faq" className="hover:text-white">
+
+            <a href="#faq" className="transition hover:text-white">
               FAQ
             </a>
+
             <a
               href="https://github.com/sufal54/khushi"
-              className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-white hover:bg-white/10"
-              aria-disabled
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-white transition hover:bg-white/10"
             >
               GitHub
             </a>
@@ -256,7 +300,7 @@ export function LandingPage() {
           <div className="md:hidden">
             <a
               href="#download"
-              className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white hover:bg-white/10"
+              className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white transition hover:bg-white/10"
             >
               Download
             </a>
@@ -265,6 +309,7 @@ export function LandingPage() {
       </header>
 
       <main className="relative">
+        {/* Hero */}
         <section className="mx-auto max-w-6xl px-4 pb-16 pt-10 sm:px-6 sm:pt-16">
           <motion.div
             variants={container}
@@ -275,16 +320,16 @@ export function LandingPage() {
             <div>
               <motion.div variants={item} className="flex flex-wrap gap-2">
                 <Badge>Desktop</Badge>
-                <Badge>API testing</Badge>
-                <Badge>Linux first</Badge>
-                <Badge>Postman-style workflow</Badge>
+                <Badge>API Testing</Badge>
+                <Badge>Linux First</Badge>
+                <Badge>Postman-Style Workflow</Badge>
               </motion.div>
 
               <motion.h1
                 variants={item}
                 className="mt-6 text-balance text-4xl font-semibold leading-tight tracking-tight sm:text-5xl"
               >
-                A modern API testing app built for speed, focus, and clean
+                A modern API client built for speed, clarity, and productive
                 workflows.
               </motion.h1>
 
@@ -292,9 +337,11 @@ export function LandingPage() {
                 variants={item}
                 className="mt-5 max-w-xl text-pretty text-base leading-7 text-white/70"
               >
-                Khushi API Client helps you send requests, manage environments,
-                organize collections, and debug responses with a fast desktop
-                experience. Start on Linux today — Windows and macOS coming soon.
+                Khushi API Client gives you everything you need to build, test,
+                and debug APIs in a fast, focused desktop environment. Create
+                requests, manage environments, organize collections, and inspect
+                responses with ease. Linux is available today, with Windows and
+                macOS support coming soon.
               </motion.p>
 
               <motion.div
@@ -302,31 +349,34 @@ export function LandingPage() {
                 className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center"
               >
                 <Link
-                  href="/download/linux"
+                  href={downloadInfo[downloadPlatform].href}
                   className="inline-flex items-center justify-center rounded-xl bg-white px-5 py-3 text-sm font-semibold text-black transition hover:bg-white/90"
                 >
-                  Download for Linux
+                  Download for {downloadPlatform}
                 </Link>
+
                 <a
                   href="#features"
-                  className="inline-flex items-center justify-center rounded-xl border border-white/10 bg-white/5 px-5 py-3 text-sm font-medium text-white hover:bg-white/10"
+                  className="inline-flex items-center justify-center rounded-xl border border-white/10 bg-white/5 px-5 py-3 text-sm font-medium text-white transition hover:bg-white/10"
                 >
-                  See features
+                  Explore Features
                 </a>
               </motion.div>
 
               <motion.div
                 variants={item}
-                className="mt-6 flex flex-wrap items-center gap-3 text-xs text-white/60"
+                className="mt-6 flex flex-wrap items-center gap-4 text-xs text-white/60"
               >
                 <span className="inline-flex items-center gap-2">
                   <span className="size-1.5 rounded-full bg-emerald-400" />
-                  Fast desktop UX
+                  Fast desktop experience
                 </span>
+
                 <span className="inline-flex items-center gap-2">
                   <span className="size-1.5 rounded-full bg-cyan-300" />
-                  Beautiful UI
+                  Clean, intuitive interface
                 </span>
+
                 <span className="inline-flex items-center gap-2">
                   <span className="size-1.5 rounded-full bg-indigo-300" />
                   Shareable collections
@@ -336,16 +386,23 @@ export function LandingPage() {
 
             <motion.div variants={item} className="relative">
               <motion.div
-                whileHover={{ rotate: 0.25, y: -2 }}
-                transition={{ type: "spring", stiffness: 220, damping: 22 }}
-                className="relative h-64 w-full overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-b from-white/10 to-white/[0.03] p-5"
+                whileHover={{
+                  rotate: 0.25,
+                  y: -2,
+                }}
+                transition={{
+                  type: "spring",
+                  stiffness: 220,
+                  damping: 22,
+                }}
+                className="relative h-96 w-full overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-b from-white/10 to-white/[0.03]"
               >
                 <Image
-                  src="/sample.png"
-                  alt="spamle"
+                  src="/sample2.png"
+                  alt="Khushi API Client interface"
                   fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-contain"
+                  priority
+                  className="object-cover"
                 />
               </motion.div>
 
@@ -354,58 +411,63 @@ export function LandingPage() {
           </motion.div>
         </section>
 
+        {/* Features */}
         <section id="features" className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
           <motion.div
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{
+              once: true,
+              amount: 0.2,
+            }}
             variants={container}
           >
             <motion.div variants={item}>
               <SectionTitle
-                eyebrow="Built for real workflows"
-                title="Everything you need for daily API work"
-                subtitle="A focused feature set that keeps you fast: requests, environments, collections, and great response visibility."
+                eyebrow="BUILT FOR EVERYDAY API DEVELOPMENT"
+                title="Everything you need for modern API testing"
+                subtitle="A focused toolkit for building requests, managing environments, organizing collections, and analyzing responses—all in one streamlined desktop application."
               />
             </motion.div>
 
             <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
               {[
                 {
-                  title: "Collections & folders",
-                  desc: "Keep endpoints organized per project with a clean sidebar and quick search.",
+                  title: "Collections & Folders",
+                  desc: "Organize endpoints by project with collections, folders, and a clean sidebar that makes everything easy to find.",
                 },
                 {
                   title: "Environments",
-                  desc: "Switch between dev/stage/prod using variables like {{baseUrl}} and {{token}}.",
+                  desc: "Easily switch between development, staging, and production using variables such as {{baseUrl}} and {{token}}.",
                 },
                 {
-                  title: "Request builder",
-                  desc: "Headers, query params, body types — with sensible defaults and a polished UI.",
+                  title: "Request Builder",
+                  desc: "Build requests with support for headers, query parameters, request bodies, and common HTTP configurations.",
                 },
                 {
-                  title: "Response insights",
-                  desc: "See status, headers, body, and timing at a glance for fast debugging.",
+                  title: "Response Insights",
+                  desc: "Quickly inspect status codes, headers, response bodies, and request timing to identify issues faster.",
                 },
                 {
-                  title: "Keyboard friendly",
-                  desc: "Designed for power users: navigate and run requests without breaking focus.",
+                  title: "Keyboard Friendly",
+                  desc: "Stay productive with a workflow designed for keyboard users, quick navigation, and minimal distractions.",
                 },
                 {
-                  title: "Desktop-first performance",
-                  desc: "Snappy interactions and smooth animations for a professional feel.",
+                  title: "Desktop Performance",
+                  desc: "Enjoy responsive interactions, smooth animations, and a desktop experience designed to stay fast as your projects grow.",
                 },
-              ].map((f) => (
+              ].map((feature) => (
                 <motion.div
-                  key={f.title}
+                  key={feature.title}
                   variants={item}
-                  className="rounded-2xl border border-white/10 bg-white/[0.03] p-6"
+                  className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 transition hover:bg-white/[0.05]"
                 >
                   <h3 className="text-base font-semibold text-white">
-                    {f.title}
+                    {feature.title}
                   </h3>
+
                   <p className="mt-3 text-sm leading-6 text-white/70">
-                    {f.desc}
+                    {feature.desc}
                   </p>
                 </motion.div>
               ))}
@@ -413,28 +475,32 @@ export function LandingPage() {
           </motion.div>
         </section>
 
+        {/* Downloads */}
         <section id="download" className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
           <motion.div
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{
+              once: true,
+              amount: 0.2,
+            }}
             variants={container}
           >
             <motion.div variants={item}>
               <SectionTitle
-                eyebrow="Download"
-                title="Get the desktop app"
-                subtitle="Linux is available now. Windows and macOS will be added later — the download cards are already ready."
+                eyebrow="DOWNLOAD"
+                title="Get Khushi API Client"
+                subtitle="Download the latest version for your platform. Linux and Android are available now, with Windows and macOS support coming soon."
               />
             </motion.div>
 
-            <div className="mt-10 grid gap-4 md:grid-cols-3">
+            <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
               <motion.div variants={item}>
                 <DownloadCard
                   platform="linux"
                   primary
                   title="Linux"
-                  description="You can download .dev or .rpm"
+                  description="Download the latest Linux builds in .deb, .rpm, and other supported formats."
                   href="/download/linux"
                   cta="Download for Linux"
                   meta="Available now"
@@ -446,11 +512,10 @@ export function LandingPage() {
                   platform="android"
                   primary
                   title="Android"
-                  description="Download the APK to install manually"
+                  description="Download the APK and install Khushi directly on your Android device."
                   href="/download/android"
-                  cta="Download for Linux"
+                  cta="Download for Android"
                   meta="Available now"
-
                 />
               </motion.div>
 
@@ -458,70 +523,74 @@ export function LandingPage() {
                 <DownloadCard
                   platform="windows"
                   title="Windows"
-                  description="Planned. The button will go live when you publish a Windows build."
+                  description="Windows support is currently in development. A downloadable build will be available soon."
                   href="/download/windows"
-                  cta="Coming soon"
-                  meta="In progress"
-                  disabled
+                  cta="Download for Windows"
+                  meta="In development"
+                  primary
                 />
               </motion.div>
+
               <motion.div variants={item}>
                 <DownloadCard
                   platform="mac"
                   title="macOS"
-                  description="Planned. Publish a signed build later and turn this on."
+                  description="macOS support is currently in development. A signed release will be available soon."
                   href="/download/mac"
-                  cta="Coming soon"
-                  meta="In progress"
+                  cta="Coming Soon"
+                  meta="In development"
                   disabled
                 />
               </motion.div>
-
-
             </div>
-
-
           </motion.div>
         </section>
 
+        {/* FAQ */}
         <section id="faq" className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
           <motion.div
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{
+              once: true,
+              amount: 0.2,
+            }}
             variants={container}
           >
             <motion.div variants={item}>
               <SectionTitle
                 eyebrow="FAQ"
-                title="Common questions"
-                subtitle="Top asked Questions"
+                title="Frequently asked questions"
+                subtitle="Everything you need to know about Khushi API Client."
               />
             </motion.div>
 
             <div className="mx-auto mt-10 grid max-w-3xl gap-3">
               <motion.div variants={item}>
                 <FAQItem
-                  question="Is this like Postman?"
-                  answer="Yes — it’s a desktop API client with a similar workflow: build requests, organize them in collections, manage environment variables, and inspect responses quickly."
+                  question="Is Khushi similar to Postman?"
+                  answer="Yes. Khushi follows a familiar API-client workflow for building requests, organizing endpoints into collections, managing environment variables, and inspecting responses. It is designed to provide a clean and focused desktop experience."
                 />
               </motion.div>
+
               <motion.div variants={item}>
                 <FAQItem
-                  question="Which Linux formats will you provide?"
-                  answer="You can ship AppImage for universal installs, plus .deb for Debian/Ubuntu and .rpm for Fedora/openSUSE. The download page is ready to link all of them."
+                  question="Which Linux formats are available?"
+                  answer="Linux builds can be distributed in formats such as AppImage, .deb, and .rpm, making it easy to install Khushi across different Linux distributions."
                 />
               </motion.div>
+
               <motion.div variants={item}>
                 <FAQItem
-                  question="Will you support Windows and macOS?"
-                  answer="Yes. Linux is first, but the site is structured to add Windows and macOS downloads later without redesign."
+                  question="Will Khushi support Windows and macOS?"
+                  answer="Yes. Linux is the first supported platform, while Windows and macOS builds are currently planned and will be released as they become ready."
                 />
               </motion.div>
+
               <motion.div variants={item}>
                 <FAQItem
-                  question="How do I publish new versions?"
-                  answer="Most teams host binaries on GitHub Releases and link them here. Alternatively, put the installers in public/downloads and the site can serve them directly."
+                  question="How are new versions distributed?"
+                  answer="New releases can be distributed through GitHub Releases or directly from the Khushi download infrastructure. Each release can provide platform-specific installers and packages."
                 />
               </motion.div>
             </div>
@@ -529,24 +598,39 @@ export function LandingPage() {
         </section>
       </main>
 
+      {/* Footer */}
       <footer className="relative border-t border-white/10">
         <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
           <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-center">
             <div>
               <p className="text-sm font-semibold">Khushi API Client</p>
+
               <p className="mt-1 text-xs text-white/60">
-                © {year} · Built with <span className="text-red-600 text-2xl">{"\u2665"}</span>
+                © {year} · Built with{" "}
+                <span className="text-xl text-red-600">{"\u2665"}</span>
               </p>
             </div>
-            <div className="flex flex-wrap gap-3 text-xs text-white/60">
-              <a href="#download" className="hover:text-white">
+
+            <div className="flex flex-wrap gap-4 text-xs text-white/60">
+              <a href="#download" className="transition hover:text-white">
                 Download
               </a>
-              <a href="#features" className="hover:text-white">
+
+              <a href="#features" className="transition hover:text-white">
                 Features
               </a>
-              <a href="#faq" className="hover:text-white">
+
+              <a href="#faq" className="transition hover:text-white">
                 FAQ
+              </a>
+
+              <a
+                href="https://github.com/sufal54/khushi"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition hover:text-white"
+              >
+                GitHub
               </a>
             </div>
           </div>
@@ -555,4 +639,3 @@ export function LandingPage() {
     </div>
   );
 }
-

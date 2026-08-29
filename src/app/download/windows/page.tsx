@@ -1,30 +1,15 @@
-import { linuxLink } from "@/utill/downloadLink";
+import { windowsLink } from "@/utill/downloadLink";
 import Link from "next/link";
 const downloads = [
-  // {
-  //   name: "AppImage",
-  //   description: "Portable application for most Linux distributions.",
-  //   label: "Recommended",
-  //   icon: "▣",
-  //   href: linuxLink.appImage,
-  // },
   {
-    name: ".deb",
-    description:
-      "For Debian, Ubuntu, Linux Mint, and other Debian-based systems.",
-    label: "x86_64 / AMD64",
-    icon: "◆",
-    href: linuxLink.deb,
-  },
-  {
-    name: ".rpm",
-    description: "For Fedora, openSUSE, RHEL, and other RPM-based systems.",
+    name: ".exe",
+    description: "Windows installer for 64-bit Intel and AMD processors.",
     label: "x86_64",
-    icon: "◈",
-    href: linuxLink.rpm,
+    icon: "⊞",
+    href: windowsLink.x86_64,
   },
 ];
-export default function LinuxDownloadPage() {
+export default function WindowsDownloadPage() {
   return (
     <main className="min-h-dvh bg-[#05060a] text-white">
       {" "}
@@ -43,32 +28,32 @@ export default function LinuxDownloadPage() {
           {" "}
           <div className="mb-5 inline-flex items-center rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs font-medium text-white/60">
             {" "}
-            Linux{" "}
+            Windows{" "}
           </div>{" "}
           <h1 className="text-balance text-4xl font-semibold tracking-tight sm:text-5xl">
             {" "}
-            Download for Linux{" "}
+            Download for Windows{" "}
           </h1>{" "}
           <p className="mt-5 max-w-xl text-base leading-7 text-white/50 sm:text-lg">
             {" "}
-            Choose the package that matches your Linux distribution and get
-            started in a few seconds.{" "}
+            Download the latest version of Khushi for Windows and get started
+            with a fast, focused API testing experience.{" "}
           </p>{" "}
         </section>{" "}
         {/* Downloads */}{" "}
-        <section className="mt-10 grid gap-4 sm:mt-12 md:grid-cols-3">
+        <section className="mt-10 sm:mt-12">
           {" "}
           {downloads.map((download) => (
             <a
               key={download.name}
               href={download.href}
               download
-              className="group relative flex flex-col rounded-2xl border border-white/10 bg-white/[0.035] p-6 transition hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.055]"
+              className="group relative block max-w-xl rounded-2xl border border-white/10 bg-white/[0.035] p-6 transition hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.055]"
             >
               {" "}
               <div className="flex items-start justify-between">
                 {" "}
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/[0.06] text-sm text-white/70">
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/[0.06] text-lg text-white/70">
                   {" "}
                   {download.icon}{" "}
                 </div>{" "}
@@ -80,14 +65,14 @@ export default function LinuxDownloadPage() {
               <div className="mt-6">
                 {" "}
                 <h2 className="text-lg font-semibold">{download.name}</h2>{" "}
-                <p className="mt-2 min-h-12 text-sm leading-6 text-white/45">
+                <p className="mt-2 text-sm leading-6 text-white/45">
                   {" "}
                   {download.description}{" "}
                 </p>{" "}
               </div>{" "}
               <div className="mt-6 flex items-center gap-2 text-sm font-medium text-white">
                 {" "}
-                Download{" "}
+                Download for Windows{" "}
                 <span className="transition-transform group-hover:translate-x-1">
                   {" "}
                   →{" "}
@@ -96,44 +81,32 @@ export default function LinuxDownloadPage() {
             </a>
           ))}{" "}
         </section>{" "}
-        {/* Which package? */}{" "}
+        {/* System requirements */}{" "}
         <section className="mt-12 border-t border-white/10 pt-8 sm:mt-16">
           {" "}
-          <h2 className="text-sm font-semibold">
-            Which package should I use?
-          </h2>{" "}
-          <div className="mt-5 grid gap-4 sm:grid-cols-3">
+          <h2 className="text-sm font-semibold">System requirements</h2>{" "}
+          <div className="mt-5 grid gap-4 sm:grid-cols-2">
             {" "}
             <div className="rounded-xl border border-white/10 bg-white/[0.02] p-5">
               {" "}
-              <p className="text-sm font-semibold">AppImage</p>{" "}
+              <p className="text-sm font-semibold">Architecture</p>{" "}
               <p className="mt-2 text-xs leading-5 text-white/40">
                 {" "}
-                The easiest option. Download it, make it executable, and run it
-                without a traditional installation.{" "}
+                64-bit x86 processors (x86_64 / AMD64), including compatible
+                Intel and AMD CPUs.{" "}
               </p>{" "}
             </div>{" "}
             <div className="rounded-xl border border-white/10 bg-white/[0.02] p-5">
               {" "}
-              <p className="text-sm font-semibold">.deb</p>{" "}
+              <p className="text-sm font-semibold">Windows</p>{" "}
               <p className="mt-2 text-xs leading-5 text-white/40">
                 {" "}
-                Choose this if you&apos;re using Ubuntu, Debian, Linux Mint, or
-                another Debian-based distribution.{" "}
-              </p>{" "}
-            </div>{" "}
-            <div className="rounded-xl border border-white/10 bg-white/[0.02] p-5">
-              {" "}
-              <p className="text-sm font-semibold">.rpm</p>{" "}
-              <p className="mt-2 text-xs leading-5 text-white/40">
-                {" "}
-                Choose this for Fedora, openSUSE, RHEL, or another RPM-based
-                distribution.{" "}
+                Designed for modern 64-bit versions of Windows.{" "}
               </p>{" "}
             </div>{" "}
           </div>{" "}
         </section>{" "}
-        {/* AppImage note */}{" "}
+        {/* Installation */}{" "}
         <section className="mt-8 rounded-2xl border border-white/10 bg-white/[0.02] p-5 sm:p-6">
           {" "}
           <div className="flex gap-4">
@@ -143,25 +116,22 @@ export default function LinuxDownloadPage() {
               {" "}
               <h3 className="text-sm font-semibold">
                 {" "}
-                Using the AppImage?{" "}
+                Installing Khushi{" "}
               </h3>{" "}
               <p className="mt-2 text-xs leading-5 text-white/40">
                 {" "}
-                After downloading, you may need to make the file executable
-                before launching it.{" "}
+                Download the installer, open the .exe file, and follow the
+                installation instructions. Windows may ask for permission before
+                starting the installation.{" "}
               </p>{" "}
-              <code className="mt-4 block overflow-x-auto rounded-lg border border-white/10 bg-black/30 px-4 py-3 text-xs text-white/60">
-                {" "}
-                chmod +x your-app.AppImage{" "}
-              </code>{" "}
             </div>{" "}
           </div>{" "}
         </section>{" "}
         {/* Footer note */}{" "}
         <p className="mt-8 text-xs leading-5 text-white/25">
           {" "}
-          Packages are provided for supported Linux distributions. Make sure you
-          download the package appropriate for your system architecture.{" "}
+          Currently available for 64-bit Windows systems using the x86_64 /
+          AMD64 architecture.{" "}
         </p>{" "}
       </div>{" "}
     </main>
