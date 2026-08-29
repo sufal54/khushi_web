@@ -402,7 +402,7 @@ export function LandingPage() {
                   alt="Khushi API Client interface"
                   fill
                   priority
-                  className="object-cover"
+                  className="object-contain"
                 />
               </motion.div>
 

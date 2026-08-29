@@ -15,7 +15,12 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Khushi API Client — Desktop API Testing App",
   description:
-    "Khushi API Client is a fast desktop API testing app (Postman-style). Download for Linux now, with Windows and macOS coming soon.",
+    "Khushi API Client is a fast, lightweight desktop API testing app for developers. Send requests, inspect responses, and test APIs with a clean, modern interface. Available for Linux, with Windows and macOS coming soon.",
+  icons: {
+    icon: "/icon.png",
+    shortcut: "/icon.png",
+    apple: "/icon.png",
+  },
 };
 
 export default function RootLayout({
