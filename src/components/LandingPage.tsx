@@ -395,7 +395,7 @@ export function LandingPage() {
                   stiffness: 220,
                   damping: 22,
                 }}
-                className="relative h-96 w-full overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-b from-white/10 to-white/[0.03]"
+                className="relative h-96 w-full overflow-hidden rounded-2xl border border-white/10"
               >
                 <Image
                   src="/sample2.png"
