@@ -1,12 +1,19 @@
 export const linuxLink = {
-  deb: "https://pub-0baa0c4e40124698a99e48fef6a57310.r2.dev/khushi-linux-deb-amd64-1.0.tar.gz",
-  rpm: "https://pub-0baa0c4e40124698a99e48fef6a57310.r2.dev/khushi-linux-rpm-x86_64-1.0.tar.gz",
+  deb: "https://sufal54.github.io/downloads/khushi-linux-deb-amd64-0.1.2.tar.gz",
+  rpm: "https://sufal54.github.io/downloads/khushi-linux-rpm-x86_64-0.1.2.tar.gz",
+  appimage:
+    "https://sufal54.github.io/downloads/khushi-linux-appimage-0.1.2.tar.gz",
 };
 export const androidLink = {
-  manual: "https://pub-0baa0c4e40124698a99e48fef6a57310.r2.dev/khushi-1.0.apk",
+  manual: "https://sufal54.github.io/downloads/khushi-0.1.2.apk",
 };
 
 export const windowsLink = {
-  x86_64:
-    "https://pub-0baa0c4e40124698a99e48fef6a57310.r2.dev/khushi-window-x86_64-1.0.zip",
+  nsis: "https://sufal54.github.io/downloads/khushi-window-x86_64-0.1.2.exe",
+  msi: "https://sufal54.github.io/downloads/khushi-window-x86_64-0.1.2.msi",
+};
+
+export const macLink = {
+  app: "https://sufal54.github.io/downloads/khushi-macos-aarch64-0.1.2.app",
+  dmg: "https://sufal54.github.io/downloads/khushi-macos-aarch64-0.1.2.dmg",
 };

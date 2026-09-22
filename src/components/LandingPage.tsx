@@ -537,9 +537,9 @@ export function LandingPage() {
                   title="macOS"
                   description="macOS support is currently in development. A signed release will be available soon."
                   href="/download/mac"
-                  cta="Coming Soon"
+                  cta="Download for macOS"
                   meta="In development"
-                  disabled
+                  primary
                 />
               </motion.div>
             </div>

@@ -2,11 +2,19 @@ import { windowsLink } from "@/utill/downloadLink";
 import Link from "next/link";
 const downloads = [
   {
-    name: ".exe",
+    name: "NSIS Installer",
     description: "Windows installer for 64-bit Intel and AMD processors.",
     label: "x86_64",
     icon: "⊞",
-    href: windowsLink.x86_64,
+    href: windowsLink.nsis,
+  },
+  {
+    name: "MSI Installer",
+    description:
+      "Windows Installer package for 64-bit Intel and AMD processors.",
+    label: "x86_64",
+    icon: "⊞",
+    href: windowsLink.msi,
   },
 ];
 export default function WindowsDownloadPage() {

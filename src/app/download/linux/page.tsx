@@ -1,13 +1,13 @@
 import { linuxLink } from "@/utill/downloadLink";
 import Link from "next/link";
 const downloads = [
-  // {
-  //   name: "AppImage",
-  //   description: "Portable application for most Linux distributions.",
-  //   label: "Recommended",
-  //   icon: "▣",
-  //   href: linuxLink.appImage,
-  // },
+  {
+    name: "AppImage",
+    description: "Portable application for most Linux distributions.",
+    label: "x86_64",
+    icon: "▣",
+    href: linuxLink.appimage,
+  },
   {
     name: ".deb",
     description:
