@@ -9,13 +9,13 @@ const downloads = [
     icon: "◉",
     href: macLink.dmg,
   },
-  {
-    name: ".app",
-    description: "Standalone macOS application bundle.",
-    label: "Apple Silicon",
-    icon: "⌘",
-    href: macLink.app,
-  },
+  // {
+  //   name: ".app",
+  //   description: "Standalone macOS application bundle.",
+  //   label: "Apple Silicon",
+  //   icon: "⌘",
+  //   href: macLink.app,
+  // },
 ];
 
 export default function MacDownloadPage() {
