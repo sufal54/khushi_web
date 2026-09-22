@@ -7,9 +7,9 @@ export const metadata: Metadata = {
   description:
     "Khushi API Client is a fast, lightweight desktop API testing app for developers. Send requests, inspect responses, and test APIs with a clean, modern interface. Available for Linux, with Windows and macOS coming soon.",
   icons: {
-    icon: "/khushi.github.io/icon.png",
-    shortcut: "/khushi.github.io/icon.png",
-    apple: "/khushi.github.io/icon.png",
+    icon: "/khushi_web/icon.png",
+    shortcut: "/khushi_web/icon.png",
+    apple: "/khushi_web/icon.png",
   },
 };
 
