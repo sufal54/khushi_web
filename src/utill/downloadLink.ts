@@ -10,7 +10,7 @@ export const androidLink = {
 };
 
 export const windowsLink = {
-  nsis: "https://pub-0baa0c4e40124698a99e48fef6a57310.r2.dev/hushi_window_nsis_0.1.2_x64.zip",
+  nsis: "https://pub-0baa0c4e40124698a99e48fef6a57310.r2.dev/Khushi_window_nsis_0.1.2_x64.zip",
   msi: "https://pub-0baa0c4e40124698a99e48fef6a57310.r2.dev/Khushi_window_msi_0.1.2_x64.zip",
 };
 
