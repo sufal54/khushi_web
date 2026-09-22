@@ -265,7 +265,7 @@ export function LandingPage() {
         <div className="flex items-center justify-between py-6">
           <Link href="/" className="relative flex h-12 w-32 items-center">
             <Image
-              src="/logo.png"
+              src="/khushi_web/logo.png"
               alt="Khushi API Client"
               width={140}
               height={140}
@@ -398,7 +398,7 @@ export function LandingPage() {
                 className="relative h-96 w-full overflow-hidden rounded-2xl border border-white/10"
               >
                 <Image
-                  src="/sample2.png"
+                  src="/khushi_web/sample2.png"
                   alt="Khushi API Client interface"
                   fill
                   priority
