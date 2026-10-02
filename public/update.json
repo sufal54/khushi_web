@@ -1,6 +1,6 @@
 {
-  "version": "0.1.3",
-  "new": [],
-  "improved": [],
-  "fixed": ["Fixed unnecessary UI re-renders", "Fixed various UI issues"]
+  "version": "0.1.4",
+  "new": ["Added automatic cookie handling"],
+  "improved": ["Improved user interaction and overall experience"],
+  "fixed": ["Fixed update notificatio ui issues"]
 }
